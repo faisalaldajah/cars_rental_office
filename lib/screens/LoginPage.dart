@@ -132,8 +132,9 @@ class _TextFeildsState extends State<TextFeilds> {
                 showSnackBar('Please enter a valid password');
                 return;
               }
-
-              login(context);
+              setState(() {
+                login(context);
+              });
             },
           ),
           SizedBox(height: 25),
@@ -148,19 +149,6 @@ class _TextFeildsState extends State<TextFeilds> {
         ],
       ),
     );
-  }
-
-  void chekUserData(BuildContext context) async {
-    var connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult != ConnectivityResult.mobile &&
-        connectivityResult != ConnectivityResult.wifi) {
-      displayToastMessage('no internet access', context);
-    } else if (!emailTextEditingController.text.contains('@')) {
-      displayToastMessage('Email adress not valid', context);
-    } else if (passwordTextEditingController.text.length < 6) {
-      displayToastMessage('passwor is atleast 6 digit', context);
-    } else
-      login(context);
   }
 
   void login(BuildContext context) async {

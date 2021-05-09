@@ -21,28 +21,41 @@ class _ViewAndDeleteCarState extends State<ViewAndDeleteCar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffe8e8e8),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () {
+                setState(() {
+                  youHaveData = false;
+                  carsDetail.clear();
+                  getData();
+                });
+              })
+        ],
         backgroundColor: Color(0xffe8e8e8),
-        appBar: AppBar(
-          backgroundColor: Color(0xffe8e8e8),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios),
-          ),
-          elevation: 0,
-          title: Text('Delete Car'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
         ),
-        body: (youHaveData != true)
-            ? Container(child: Center(child: Text('Wait to get data')))
-            : ListView.builder(
-                itemCount: carsDetail.length,
-                itemBuilder: (context, index) {
-                  return CarDetailCard(
-                    carsDetail: carsDetail,
-                    index: index,
-                  );
-                }));
+        elevation: 0,
+        title: Text('Delete Car'),
+      ),
+      body: (youHaveData != true)
+          ? Container(child: Center(child: Text('Wait to get data')))
+          : ListView.builder(
+              itemCount: carsDetail.length,
+              itemBuilder: (context, index) {
+                return CarDetailCard(
+                  carsDetail: carsDetail,
+                  index: index,
+                );
+              },
+            ),
+    );
   }
 
   Future<void> getData() async {
@@ -80,6 +93,7 @@ class _ViewAndDeleteCarState extends State<ViewAndDeleteCar> {
         url = snapshot.value[key]['image_url'];
 
         carDetail = CarInfo(
+          key: key,
           carColor: carColor,
           carModel: carModel,
           carNumber: carNumber,

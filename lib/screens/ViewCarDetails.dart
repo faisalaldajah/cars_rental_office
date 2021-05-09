@@ -1,6 +1,7 @@
 import 'package:cars_rental_office/models/CarInfo.dart';
 import 'package:cars_rental_office/utils/utils.dart';
 import 'package:cars_rental_office/widgets/GradientButton.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class ViewCarDetails extends StatelessWidget {
@@ -21,215 +22,222 @@ class ViewCarDetails extends StatelessWidget {
         elevation: 0,
         title: Text('Vehicle'),
       ),
-      body: ListView(
+      body: Column(
         children: [
-          Container(
-            margin: EdgeInsets.all(5),
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          Flexible(
+            child: ListView(
               children: [
-                Text(
-                  '${carInfo.carModel} ${carInfo.carType}',
-                  style: headerTitle,
-                ),
-                SizedBox(height: 10),
                 Container(
-                  width: double.infinity,
-                  height: 250,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage('${carInfo.urlImage}'),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.event_seat_outlined),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Seats',
-                                    style: bodyText,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${carInfo.carSeats} person',
-                                    style: bodyText,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.local_gas_station),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'fuel',
-                                    style: bodyText,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${carInfo.fuel}',
-                                    style: bodyText,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.precision_manufacturing_outlined),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'year',
-                                    style: bodyText,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${carInfo.dateOfFactor}',
-                                    style: bodyText,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.color_lens_outlined),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Color',
-                                    style: bodyText,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${carInfo.carColor}',
-                                    style: bodyText,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.drive_eta),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'gearbox',
-                                    style: bodyText,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${carInfo.gearbox}',
-                                    style: bodyText,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.event),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'availablty',
-                                    style: bodyText,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    'available',
-                                    style: bodyText,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Divider(
-                  thickness: 1.5,
-                ),
-                Container(
-                  margin:
-                      EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 5),
+                  margin: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Features',
-                        style: pageTitle,
+                        '${carInfo.carModel} ${carInfo.carType}',
+                        style: headerTitle,
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        ' ${carInfo.features}',
-                        style: bodyText,
+                      SizedBox(height: 10),
+                      Container(
+                        width: double.infinity,
+                        height: 250,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage('${carInfo.urlImage}'),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                       ),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.event_seat_outlined),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Seats',
+                                          style: bodyText,
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          '${carInfo.carSeats} person',
+                                          style: bodyText,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.local_gas_station),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'fuel',
+                                          style: bodyText,
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          '${carInfo.fuel}',
+                                          style: bodyText,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.precision_manufacturing_outlined),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'year',
+                                          style: bodyText,
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          '${carInfo.dateOfFactor}',
+                                          style: bodyText,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.color_lens_outlined),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Color',
+                                          style: bodyText,
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          '${carInfo.carColor}',
+                                          style: bodyText,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.drive_eta),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'gearbox',
+                                          style: bodyText,
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          '${carInfo.gearbox}',
+                                          style: bodyText,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.event),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'availablty',
+                                          style: bodyText,
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          'available',
+                                          style: bodyText,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 1.5,
+                      ),
+                      Container(
+                        margin:
+                            EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Features',
+                              style: pageTitle,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              ' ${carInfo.features}',
+                              style: bodyText,
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                )
+                ),
+               
               ],
             ),
           ),
-          Container(
+           Container(
             padding: EdgeInsets.all(15),
-            width: 200,
+            width: double.infinity,
             height: 135,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -253,14 +261,22 @@ class ViewCarDetails extends StatelessWidget {
                 GradientButton(
                   title: 'delete',
                   onPressed: () {
-                    Navigator.pop(context);
+                    deleteCar(context);
                   },
-                )
+                ),
               ],
             ),
           )
         ],
       ),
     );
+  }
+
+  void deleteCar(context) {
+    DatabaseReference carRef =
+        FirebaseDatabase.instance.reference().child('cars/${carInfo.key}');
+    print(carInfo.key);
+    carRef.remove();
+    Navigator.pop(context,'reload');
   }
 }
