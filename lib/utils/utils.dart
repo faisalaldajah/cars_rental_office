@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 var paragraphText = TextStyle(fontFamily: 'bolt', fontSize: 14);
 
-var bodyText = TextStyle(fontFamily: 'bolt', fontSize: 16);
+var bodyText = TextStyle(fontFamily: 'bolt', fontSize: 16, color: Colors.black);
 
 var smallText = TextStyle(fontFamily: 'bolt', fontSize: 12);
 

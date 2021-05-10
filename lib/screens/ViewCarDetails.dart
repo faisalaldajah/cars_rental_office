@@ -1,4 +1,5 @@
 import 'package:cars_rental_office/models/CarInfo.dart';
+import 'package:cars_rental_office/screens/Availablty.dart';
 import 'package:cars_rental_office/utils/utils.dart';
 import 'package:cars_rental_office/widgets/GradientButton.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -62,7 +63,8 @@ class ViewCarDetails extends StatelessWidget {
                                     Icon(Icons.event_seat_outlined),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Seats',
@@ -86,7 +88,8 @@ class ViewCarDetails extends StatelessWidget {
                                     Icon(Icons.local_gas_station),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'fuel',
@@ -107,10 +110,12 @@ class ViewCarDetails extends StatelessWidget {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Icon(Icons.precision_manufacturing_outlined),
+                                    Icon(
+                                        Icons.precision_manufacturing_outlined),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'year',
@@ -139,7 +144,8 @@ class ViewCarDetails extends StatelessWidget {
                                     Icon(Icons.color_lens_outlined),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'Color',
@@ -163,7 +169,8 @@ class ViewCarDetails extends StatelessWidget {
                                     Icon(Icons.drive_eta),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'gearbox',
@@ -187,11 +194,27 @@ class ViewCarDetails extends StatelessWidget {
                                     Icon(Icons.event),
                                     SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          'availablty',
-                                          style: bodyText,
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Availablty(),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'availablty',
+                                            style: TextStyle(
+                                              fontFamily: 'bolt',
+                                              fontSize: 16,
+                                              color: Colors.black,
+                                            ),
+                                          ),
                                         ),
                                         SizedBox(height: 4),
                                         Text(
@@ -211,8 +234,8 @@ class ViewCarDetails extends StatelessWidget {
                         thickness: 1.5,
                       ),
                       Container(
-                        margin:
-                            EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 5),
+                        margin: EdgeInsets.only(
+                            left: 15, right: 15, bottom: 15, top: 5),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -231,11 +254,10 @@ class ViewCarDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-               
               ],
             ),
           ),
-           Container(
+          Container(
             padding: EdgeInsets.all(15),
             width: double.infinity,
             height: 135,
@@ -277,6 +299,6 @@ class ViewCarDetails extends StatelessWidget {
         FirebaseDatabase.instance.reference().child('cars/${carInfo.key}');
     print(carInfo.key);
     carRef.remove();
-    Navigator.pop(context,'reload');
+    Navigator.pop(context);
   }
 }
