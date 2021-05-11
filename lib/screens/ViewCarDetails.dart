@@ -203,12 +203,14 @@ class ViewCarDetails extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Availablty(),
+                                                    Availablty(
+                                                  carInfo: carInfo,
+                                                ),
                                               ),
                                             );
                                           },
                                           child: Text(
-                                            'availablty',
+                                            'show availablty',
                                             style: TextStyle(
                                               fontFamily: 'bolt',
                                               fontSize: 16,
@@ -217,10 +219,7 @@ class ViewCarDetails extends StatelessWidget {
                                           ),
                                         ),
                                         SizedBox(height: 4),
-                                        Text(
-                                          'available',
-                                          style: bodyText,
-                                        ),
+                                        
                                       ],
                                     ),
                                   ],
