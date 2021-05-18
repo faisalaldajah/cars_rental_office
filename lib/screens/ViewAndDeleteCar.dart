@@ -45,7 +45,11 @@ class _ViewAndDeleteCarState extends State<ViewAndDeleteCar> {
         title: Text('Delete Car'),
       ),
       body: (youHaveData != true)
-          ? Container(child: Center(child: Text('Wait to get data')))
+          ? Container(
+              child: Center(
+                child: Text('Wait to get data'),
+              ),
+            )
           : ListView.builder(
               itemCount: carsDetail.length,
               itemBuilder: (context, index) {

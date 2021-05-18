@@ -1,5 +1,6 @@
 import 'package:cars_rental_office/screens/MainPage.dart';
 import 'package:cars_rental_office/screens/RegistrationPage.dart';
+import 'package:cars_rental_office/screens/ResetPassword.dart';
 import 'package:cars_rental_office/utils/utils.dart';
 import 'package:cars_rental_office/widgets/GradientButton.dart';
 import 'package:cars_rental_office/widgets/ProgressDialog.dart';
@@ -139,13 +140,23 @@ class _TextFeildsState extends State<TextFeilds> {
           ),
           SizedBox(height: 25),
           TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RegistrationPage.id);
-              },
-              child: Text(
-                'Do not have an Account? Registration here',
-                style: TextStyle(color: Colors.black),
-              ))
+            onPressed: () {
+              Navigator.pushNamed(context, ResetPassword.id);
+            },
+            child: Text(
+              'Forget Password',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RegistrationPage.id);
+            },
+            child: Text(
+              'Do not have an Account? Registration here',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
         ],
       ),
     );
@@ -170,9 +181,9 @@ class _TextFeildsState extends State<TextFeilds> {
         .user;
 
     if (user != null) {
-      DatabaseReference userRef =
-          FirebaseDatabase.instance.reference().child('users/${user.uid}');
-      userRef.once().then((DataSnapshot snapshot) {
+      DatabaseReference adminRef =
+          FirebaseDatabase.instance.reference().child('admin/${user.uid}');
+      adminRef.once().then((DataSnapshot snapshot) {
         if (snapshot.value != null) {
           Navigator.pushNamedAndRemoveUntil(
               context, MainPage.id, (route) => false);

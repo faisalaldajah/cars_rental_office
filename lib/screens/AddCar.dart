@@ -33,7 +33,7 @@ class _AddCarState extends State<AddCar> {
   TextEditingController carSeatsTextEditingController = TextEditingController();
   TextEditingController carIDTextEditingController = TextEditingController();
   var url;
-  DateTime currentDate = DateTime.now();
+  
   var storage = FirebaseStorage.instance;
 
   File _image;

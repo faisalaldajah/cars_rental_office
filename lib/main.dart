@@ -1,3 +1,4 @@
+import 'package:cars_rental_office/screens/ResetPassword.dart';
 import 'package:cars_rental_office/screens/ViewAndDeleteCar.dart';
 import 'package:cars_rental_office/screens/LoginPage.dart';
 import 'package:cars_rental_office/screens/RegistrationPage.dart';
@@ -21,13 +22,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'okCar',
-      theme: ThemeData(primaryColor: Colors.white, accentColor: Colors.purple),
       initialRoute: (currentFirebaseUser == null) ? LoginPage.id : MainPage.id,
       routes: {
         MainPage.id: (context) => MainPage(),
         RegistrationPage.id: (context) => RegistrationPage(),
         LoginPage.id: (context) => LoginPage(),
-        ViewAndDeleteCar.id:(context)=>ViewAndDeleteCar(),
+        ViewAndDeleteCar.id: (context) => ViewAndDeleteCar(),
+        ResetPassword.id: (context) => ResetPassword(),
       },
     );
   }

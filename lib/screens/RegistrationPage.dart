@@ -40,7 +40,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       ),
                     ),
                     Text(
-                      'Sign in to continue!',
+                      'Sign up to continue!',
                       style: TextStyle(
                         fontSize: 25,
                         fontFamily: 'bolt',
@@ -94,12 +94,14 @@ class _TextFeildsState extends State<TextFeilds> {
       email: emailTextEditingController.text,
       password: passwordTextEditingController.text,
     )
-            .catchError((ex) {
-      //check error and display message
-      Navigator.pop(context);
-      PlatformException thisEx = ex;
-      showSnackBar(thisEx.message);
-    }))
+            .catchError(
+      (ex) {
+        //check error and display message
+        Navigator.pop(context);
+        PlatformException thisEx = ex;
+        showSnackBar(thisEx.message);
+      },
+    ))
         .user;
 
     Navigator.pop(context);
@@ -119,8 +121,7 @@ class _TextFeildsState extends State<TextFeilds> {
       newUserRef.set(userMap);
 
       //Take the user to the mainPage
-      Navigator.pushNamedAndRemoveUntil(
-          context, MainPage.id, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
     }
   }
 
