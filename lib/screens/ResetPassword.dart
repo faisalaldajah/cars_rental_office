@@ -3,6 +3,7 @@ import 'package:cars_rental_office/widgets/GradientButton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ResetPassword extends StatelessWidget {
   static const String id = 'ResetPassword';
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,9 +16,12 @@ class ResetPassword extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Text(
-                    'we will send you a link... please click on that link to reset your password.')),
+              margin: EdgeInsets.only(left: 20, right: 20),
+              child: Text(
+                'we will send you a link... please click on that link to reset your password.',
+                style: bodyText,
+              ),
+            ),
             Container(
               margin: EdgeInsets.only(left: 20, right: 20),
               child: TextFormField(
@@ -39,13 +43,14 @@ class ResetPassword extends StatelessWidget {
               title: 'Send',
               onPressed: () {
                 _auth.sendPasswordResetEmail(
-                    email: emailTextEditingController.text);
+                  email: emailTextEditingController.text,
+                );
                 emailTextEditingController.clear();
                 FocusScope.of(context).requestFocus(FocusNode());
                 displayToastMessage('check your email please', context);
                 Navigator.pop(context);
               },
-            )
+            ),
           ],
         ),
       ),

@@ -92,7 +92,7 @@ class _AvailabltyState extends State<Availablty> {
         phone = snapshot.value[key]['phone'];
         totalprice = snapshot.value[key]['price'];
         name = snapshot.value[key]['name'];
-
+        
         paymentData = PaymentData(
           from: from,
           name: name,
