@@ -176,7 +176,7 @@ class _TextFeildsState extends State<TextFeilds> {
     )
             .catchError((errMsg) {
       Navigator.pop(context);
-      displayToastMessage('Error: $errMsg', context);
+      displayToastMessage('wrong email or password', context);
     }))
         .user;
 
