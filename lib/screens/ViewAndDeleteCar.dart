@@ -1,4 +1,5 @@
 import 'package:cars_rental_office/models/CarInfo.dart';
+import 'package:cars_rental_office/utils/utils.dart';
 import 'package:cars_rental_office/widgets/CarDetailCard.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class ViewAndDeleteCar extends StatefulWidget {
 
 class _ViewAndDeleteCarState extends State<ViewAndDeleteCar> {
   List<CarInfo> carsDetail = [];
-  bool youHaveData = false;
+
   @override
   void initState() {
     super.initState();
