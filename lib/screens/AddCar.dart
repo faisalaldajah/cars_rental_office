@@ -33,7 +33,7 @@ class _AddCarState extends State<AddCar> {
   TextEditingController carSeatsTextEditingController = TextEditingController();
   TextEditingController carIDTextEditingController = TextEditingController();
   var url;
-  
+
   var storage = FirebaseStorage.instance;
 
   File _image;
@@ -51,6 +51,7 @@ class _AddCarState extends State<AddCar> {
               icon: Icon(
                 Icons.done,
                 size: 30,
+                color: Colors.black,
               ),
               onPressed: () {
                 showDialog(
@@ -66,7 +67,10 @@ class _AddCarState extends State<AddCar> {
         title: Text('Add new car'),
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_outlined),
+          icon: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -290,9 +294,6 @@ class _AddCarState extends State<AddCar> {
       ),
     );
   }
-
-  
-  
 
   Future<void> addCarToDatabase() async {
     DatabaseReference addCarRef =

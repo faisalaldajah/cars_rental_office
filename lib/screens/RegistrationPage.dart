@@ -1,5 +1,6 @@
 import 'package:cars_rental_office/screens/LoginPage.dart';
 import 'package:cars_rental_office/screens/MainPage.dart';
+import 'package:cars_rental_office/utils/utils.dart';
 import 'package:cars_rental_office/widgets/GradientButton.dart';
 import 'package:cars_rental_office/widgets/ProgressDialog.dart';
 import 'package:connectivity/connectivity.dart';
@@ -119,7 +120,9 @@ class _TextFeildsState extends State<TextFeilds> {
       };
 
       newUserRef.set(userMap);
-
+      setState(() {
+        userLoggedin = true;
+      });
       //Take the user to the mainPage
       Navigator.pushNamedAndRemoveUntil(context, MainPage.id, (route) => false);
     }

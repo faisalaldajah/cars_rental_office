@@ -133,9 +133,8 @@ class _TextFeildsState extends State<TextFeilds> {
                 showSnackBar('Please enter a valid password');
                 return;
               }
-              setState(() {
-                login(context);
-              });
+
+              login(context);
             },
           ),
           SizedBox(height: 25),
@@ -190,6 +189,9 @@ class _TextFeildsState extends State<TextFeilds> {
         }
       });
     }
+    setState(() {
+      userLoggedin = true;
+    });
   }
 
   void showSnackBar(String title) {

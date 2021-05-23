@@ -19,11 +19,14 @@ class MainPage extends StatelessWidget {
       backgroundColor: Color(0xffe8e8e8),
       appBar: AppBar(
         backgroundColor: Color(0xffe8e8e8),
-          elevation: 0,
+        elevation: 0,
         actions: [
-          (currentFirebaseUser != null)
+          (userLoggedin != false)
               ? IconButton(
-                  icon: Icon(Icons.logout),
+                  icon: Icon(
+                    Icons.logout,
+                    color: Colors.black,
+                  ),
                   onPressed: () {
                     _signOut();
                     Navigator.pushNamed(context, LoginPage.id);

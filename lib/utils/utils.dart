@@ -24,4 +24,7 @@ User currentFirebaseUser;
 displayToastMessage(String message, BuildContext context) {
   Fluttertoast.showToast(msg: message);
 }
+
 bool youHaveData = false;
+
+bool userLoggedin = false;

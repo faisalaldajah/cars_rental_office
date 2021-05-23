@@ -26,7 +26,10 @@ class _ViewAndDeleteCarState extends State<ViewAndDeleteCar> {
       appBar: AppBar(
         actions: [
           IconButton(
-              icon: Icon(Icons.refresh),
+              icon: Icon(
+                Icons.refresh,
+                color: Colors.black,
+              ),
               onPressed: () {
                 setState(() {
                   youHaveData = false;
@@ -40,10 +43,16 @@ class _ViewAndDeleteCarState extends State<ViewAndDeleteCar> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
         ),
         elevation: 0,
-        title: Text('Delete Car'),
+        title: Text(
+          'Delete Car',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: (youHaveData != true)
           ? Container(
